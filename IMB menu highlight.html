@@ -1,0 +1,71 @@
+<!-- IMB Menu highlight start -->
+<script>
+  const appendPayToWinToMainmenu = () => {
+    const secondaryMenuItems = document.querySelectorAll(".cate-dd.mrkt-lnks");
+    const mainMenu = document.querySelector(".cate-nme");
+
+    for (const menuItem of secondaryMenuItems) {
+      // TODO: REWRITE ".includes("Személyes beállítások")" TO PAY TO WIN MENU NAME
+      if (menuItem.textContent.includes("Személyes beállítások")) {
+        const menuItemChild = menuItem.children[0];
+
+        menuItem.className = "cate-highlight highlightImbParent";
+        menuItemChild.className = "cate-type highlightImbChild";
+
+        const arrowIcon = menuItemChild.querySelector("img");
+        arrowIcon.remove();
+
+        // TODO: insted of append(), insertAdjacentElement() would be better for positioning the targeted PayToWin menu element
+        // DOCUMENTATION: https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement
+        mainMenu.append(menuItem);
+        insertAdjacentElement(position, element);
+      }
+    }
+  };
+
+  function imbhighlightmenu() {
+    // targets node
+    var imbmenu = document.querySelectorAll("div.cate-type");
+    // for loop
+    for (var i = 0, len = imbmenu.length; i < len; ++i) {
+      if (imbmenu[i].innerHTML.indexOf("AVON Brochure") !== -1) {
+        // targets node
+        imbmenu[i].parentNode.className = "cate-highlight highlightImbParent";
+        // set classnames
+        imbmenu[i].className = "cate-type highlightImbChild";
+        // adding ID
+        imbmenu[i].id = "imbMenuHighlighted";
+      }
+    }
+  }
+
+  document.addEventListener("readystatechange", (e) => {
+    if (document.readyState === "complete") {
+      imbhighlightmenu();
+      appendPayToWinToMainmenu;
+    }
+  });
+</script>
+
+<style>
+  /* highlight css */
+  .highlightImbParent {
+    background: #7f28c4;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 4px;
+  }
+
+  .highlightImbParent:hover,
+  .highlightImbChild:hover {
+    background: #6a17ad !important;
+  }
+
+  .highlightImbChild {
+    color: white !important;
+    font-weight: 600 !important;
+  }
+</style>
+<!-- IMB Menu highlight end -->
